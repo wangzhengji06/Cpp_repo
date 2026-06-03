@@ -1,5 +1,5 @@
 {
-  description = "C/C++ learning environment with Clang";
+  description = "C/C++ learning environment with Clang and Qt";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -26,8 +26,16 @@
               clangPkgs.clang-tools
               clangPkgs.lldb
 
+              cmake
               gnumake
               pkg-config
+
+              qt6.wrapQtAppsHook
+            ];
+
+            buildInputs = with pkgs; [
+              qt6.qtbase
+              qt6.qttools
             ];
 
             shellHook = ''
@@ -36,10 +44,14 @@
 
               export CLANGD_FLAGS="--query-driver=$CC,$CXX"
 
-              echo "C/C++ dev shell loaded with Clang"
+              export CMAKE_PREFIX_PATH=${pkgs.qt6.qtbase}
+
+              echo "C/C++ dev shell loaded with Clang and Qt"
               echo "CC           = $CC"
               echo "CXX          = $CXX"
               echo "CLANGD_FLAGS = $CLANGD_FLAGS"
+              echo "Qt version:"
+              ${pkgs.qt6.qtbase}/bin/qmake --version | head -n 2
               $CC --version | head -n 1
             '';
           };

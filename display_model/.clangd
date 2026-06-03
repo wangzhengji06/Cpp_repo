@@ -1,0 +1,4 @@
+# display_model/.clangd
+
+CompileFlags:
+  CompilationDatabase: build
