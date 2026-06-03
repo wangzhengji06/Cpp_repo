@@ -6,7 +6,9 @@ using namespace Graph_lib;
 int main() {
   Application app;
 
-  Simple_window win{{100, 100}, 600, 400, "PPP graphics test"};
+  Point tl{900, 500};
+
+  Simple_window win{tl, 600, 400, "Canvas"};
 
   Text hello{{150, 150}, "Hello, PPP graphics!"};
   win.attach(hello);
