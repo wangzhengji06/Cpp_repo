@@ -3,7 +3,7 @@
 
 class Group : public Shape {
 public:
-  Group(const Group&);
+  Group(const Group &);
   void move(int dx, int dy) override;
   void add(Shape &p);
 
