@@ -51,7 +51,7 @@ void Lines_window::next() {
     char ch = 0;
     int y = 0;
     iss >> x >> ch >> y;
-    lines.add(Point{x * 30 , y * 30});
+    lines.add(Point{x * 30, y * 30});
 
     ostringstream oss;
     oss << '(' << x << ',' << y << ')';
