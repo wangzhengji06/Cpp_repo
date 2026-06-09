@@ -1,0 +1,37 @@
+#include <cstddef>
+#include <string>
+
+class Link {
+public:
+  std::string value;
+
+  Link(const std::string &v, Link *p = nullptr, Link *s = nullptr)
+      : value{v}, prev{p}, succ{s} {}
+  Link *insert(Link *n);
+  Link *add(Link *n);
+  Link *erase();
+
+  Link *find(const std::string &s);
+  Link *advance(int n) const;
+  Link *next() const { return succ; }
+  Link *previous() const { return prev; }
+
+private:
+  Link *prev;
+  Link *succ;
+};
+
+Link *Link::insert(Link *n) {
+  if (n == nullptr)
+    return this;
+  if (this == nullptr)
+    return n;
+  n->succ = this;
+  if (this->prev)
+    this->prev->succ = n;
+  n->prev = this->prev;
+  this->prev = n;
+  return n;
+}
+
+
